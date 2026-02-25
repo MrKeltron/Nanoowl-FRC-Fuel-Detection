@@ -1,0 +1,18 @@
+# NanoOWL Vision System v3.0 - Python Dependencies
+
+# Pi-side dependencies
+paramiko>=2.7.0
+requests>=2.25.0
+
+# Jetson-side dependencies (NanoOWL)
+torch>=2.0.0
+torchvision>=0.15.0
+transformers>=4.30.0
+pillow>=9.0.0
+numpy>=1.21.0
+opencv-python>=4.7.0
+
+# NanoOWL (install separately)
+# git clone https://github.com/NVIDIA-AI-IOT/nanoowl.git
+# cd nanoowl
+# pip3 install -e .
