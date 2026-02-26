@@ -8,9 +8,9 @@
 # On Jetson with CSI camera, set USE_CSI_CAMERA = True instead
 CAMERA_INDEX = 0
 USE_CSI_CAMERA = False          # Set to True on Jetson if using CSI camera
-CAMERA_WIDTH = 640
-CAMERA_HEIGHT = 480
-CAMERA_FPS = 60
+CAMERA_WIDTH = 416
+CAMERA_HEIGHT = 416
+CAMERA_FPS = 30
 
 # CSI camera pipeline (only used if USE_CSI_CAMERA = True)
 # You shouldn't need to change this on the Jetson
@@ -21,25 +21,13 @@ CSI_PIPELINE = (
     "videoconvert ! video/x-raw, format=BGR ! appsink"
 )
 
-# --- MODEL SETTINGS ---
-# 'yolov8n.pt' = nano (fastest, less accurate) - good for Jetson
-# 'yolov8s.pt' = small (good balance)
-# 'yolov8m.pt' = medium (more accurate, slower)
-MODEL_PATH = "yolov8n.pt"
-
-# COCO class ID for sports ball = 32
-# If you fine-tune your own model later, set this to 0 (first class)
-TARGET_CLASS_ID = 0
-TARGET_CLASS_NAME = "person"
+# --- ROBOFLOW SETTINGS ---
+MODEL_PATH = "runs/detect/train3/weights/best.pt"
+DEVICE = "auto"
+CONFIDENCE_THRESHOLD = 0.4
 
 # Minimum confidence to count as a detection (0.0 - 1.0)
 CONFIDENCE_THRESHOLD = 0.4
-
-# --- DEVICE SETTINGS ---
-# 'auto'  = automatically picks best available (cuda > cpu)
-# 'cuda'  = force GPU (NVIDIA on Jetson, ROCm on AMD Linux)
-# 'cpu'   = force CPU (safe fallback, works everywhere)
-DEVICE = "auto"
 
 # --- BALL REAL-WORLD SIZE (for distance calculation) ---
 # Measure your actual ball diameter and set it here

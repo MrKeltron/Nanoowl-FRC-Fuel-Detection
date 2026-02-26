@@ -43,6 +43,7 @@ class BallDetector:
             height_px  - height of bounding box in pixels
             confidence - detection confidence 0.0-1.0
             bbox       - (x1, y1, x2, y2) raw bounding box corners
+            label      - class label string
         """
         results = self.model(
             frame,
@@ -54,18 +55,14 @@ class BallDetector:
         detections = []
         for result in results:
             for box in result.boxes:
-                class_id = int(box.cls[0])
-
-                # Filter to only our target class
-                if class_id != self.config.TARGET_CLASS_ID:
-                    continue
-
                 x1, y1, x2, y2 = map(int, box.xyxy[0])
                 width_px = x2 - x1
                 height_px = y2 - y1
                 x_center = x1 + width_px // 2
                 y_center = y1 + height_px // 2
                 confidence = float(box.conf[0])
+                class_id = int(box.cls[0])
+                label = self.model.names[class_id]
 
                 detections.append({
                     "x_center":   x_center,
@@ -73,7 +70,8 @@ class BallDetector:
                     "width_px":   width_px,
                     "height_px":  height_px,
                     "confidence": confidence,
-                    "bbox":       (x1, y1, x2, y2)
+                    "bbox":       (x1, y1, x2, y2),
+                    "label":      label
                 })
 
         # Sort by confidence, best detection first
