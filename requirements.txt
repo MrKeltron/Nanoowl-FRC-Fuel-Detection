@@ -1,0 +1,7 @@
+# requirements.txt
+# Install with: pip install -r requirements.txt
+
+ultralytics       # YOLOv8 - handles model loading and inference
+opencv-python     # Camera capture and display
+torch             # PyTorch - auto-installed by ultralytics but listed explicitly
+pynetworktables   # FRC NetworkTables communication with roboRIO
