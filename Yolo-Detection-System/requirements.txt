@@ -1,0 +1,22 @@
+# requirements.txt - Universal Install
+# Works on Windows, Linux, Mac, Jetson
+# Install with: pip install -r requirements.txt
+# Then run with: python main.py
+
+# Core dependencies
+ultralytics>=8.0.0      # YOLOv8 model and inference
+opencv-python>=4.5.0    # Camera and display
+torch>=2.0.0            # PyTorch (CPU or CUDA)
+torchvision>=0.15.0     # Vision utilities
+
+# Optional: FRC robot communication
+# Uncomment to enable NetworkTables publishing to roboRIO
+# pynetworktables>=2021.0.0
+
+# Optional: Windows hardware acceleration (AMD NPU/GPU)
+# Uncomment to enable ~2-3x faster inference with DirectML
+# torch-directml
+
+# For Jetson Orin Nano:
+# First install: pip install torch torchvision --index-url https://download.pytorch.org/whl/nightly/jetson/cu118
+# Then install other dependencies: pip install -r requirements-jetson.txt
